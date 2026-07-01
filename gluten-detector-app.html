@@ -245,32 +245,78 @@
             </div>
         </section>
 
-        <section id="demo" class="px-6 py-16">
-            <div class="max-w-4xl mx-auto p-8 bg-white/85 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+        <section id="media" class="px-6 py-16">
+            <div class="max-w-6xl mx-auto">
                 <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-600 pl-4">
-                    Démo
+                    Média
                 </h2>
 
-                <p class="text-slate-600 leading-relaxed mb-6">
-                    La démo publique est disponible sur Streamlit Community Cloud. Le projet peut aussi être lancé en local
-                    avec le backend FastAPI et l’interface Streamlit.
+                <p class="text-slate-600 leading-relaxed mb-10 max-w-3xl">
+                    Captures représentatives de Glutify : tableau de bord, API, historique des analyses,
+                    génération de recettes et alternatives sans gluten.
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
-                        <p class="font-bold text-slate-800 mb-2">Backend</p>
-                        <code class="text-slate-600">python -m uvicorn api:app --reload --port 8000</code>
-                    </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/accueil.PNG" alt="Accueil du tableau de bord Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Accueil</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Présentation des sections principales et point d’entrée vers les contrôles produits et recettes.</p>
+                        </div>
+                    </article>
 
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
-                        <p class="font-bold text-slate-800 mb-2">Interface</p>
-                        <code class="text-slate-600">streamlit run app.py</code>
-                    </div>
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/1.PNG" alt="Tableau de bord connecté Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Dashboard connecté</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Espace personnalisé avec navigation vers l’analyse, l’historique, la création de recettes et les favoris.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/6.jfif" alt="Verdict et alternatives sans gluten dans Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Verdict & alternatives</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Résultat d’analyse avec justification et suggestions de produits plus sûrs.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/5.jfif" alt="Historique des analyses Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Historique</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Suivi des analyses produits avec verdicts, dates et actions associées.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/4.jfif" alt="Génération de recette sans gluten dans Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Création de recettes</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Génération de recettes adaptées à partir d’un plat souhaité.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <img src="documents/projets/glutenDetector/2.jfif" alt="Documentation API FastAPI de Glutify" class="w-full h-72 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">API FastAPI</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Documentation Swagger des endpoints produits, analyses, recettes et historique.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50 lg:col-span-2">
+                        <img src="documents/projets/glutenDetector/3.jfif" alt="Recettes favorites dans Glutify" class="w-full h-80 object-cover object-top">
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-2">Favoris</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Liste des recettes sauvegardées pour consultation ou adaptation ultérieure.</p>
+                        </div>
+                    </article>
                 </div>
 
-                <div class="mt-8 flex gap-4 flex-wrap">
+                <div class="mt-10 flex gap-4 flex-wrap">
                     <a href="https://gluten-detector-app.streamlit.app/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 transition">
-                        <i class="fa-solid fa-play mr-2"></i>Ouvrir la démo
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>Ouvrir l'application
                     </a>
 
                     <a href="https://github.com/hafsaelmekki/gluten-detector-app" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium border border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600 transition">
