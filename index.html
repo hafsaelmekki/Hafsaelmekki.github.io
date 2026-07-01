@@ -214,7 +214,7 @@
         </p>
 
         <div class="animate-rise delay-3 mt-10 flex justify-center gap-4 flex-wrap">
-            <a href="documents/cv_HafsaElMekki_DataScientist_FR.pdf" download class="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition">
+            <a href="documents/cv/cv_HafsaElMekki_DataScientist_FR.pdf" download class="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition">
                 <i class="fa-solid fa-file-arrow-down mr-2"></i>Télécharger mon CV
             </a>
 
@@ -500,102 +500,32 @@
                 Projets & Cas d’usage
             </h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="overflow-hidden bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+                    <img src="documents/projets/glutenDetector/accueil.PNG" alt="Interface du tableau de bord Glutify" class="w-full h-64 md:h-80 object-cover object-top">
 
-                <!-- PROJET 1 -->
-                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-                    <div class="text-blue-400 text-3xl mb-4">
-                        <i class="fa-solid fa-wave-square"></i>
+                    <div class="p-6">
+                        <div class="text-blue-400 text-3xl mb-4">
+                            <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-white mb-3">
+                            Glutify - Détecteur de gluten
+                        </h4>
+
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Application IA pour analyser des produits alimentaires, identifier les risques liés au gluten
+                            et proposer des alternatives plus sûres.
+                        </p>
+
+                        <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
+                            Streamlit • FastAPI • RAG • Groq • OpenFoodFacts
+                        </p>
+
+                        <a href="gluten-detector-app.html" target="_blank" rel="noopener noreferrer" class="text-blue-400 text-sm hover:underline">
+                            Voir le projet
+                        </a>
                     </div>
-
-                    <h4 class="text-xl font-bold text-white mb-3">
-                        Détection d’anomalies sur séries temporelles
-                    </h4>
-
-                    <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                        Pipeline de traitement de données temporelles avec nettoyage,
-                        feature engineering, réduction de dimension et détection d’anomalies.
-                    </p>
-
-                    <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
-                        Python • Pandas • Scikit-learn • PCA • Isolation Forest
-                    </p>
-
-                    <a href="#" class="text-blue-400 text-sm hover:underline">
-                        Voir le projet
-                    </a>
-                </div>
-
-                <!-- PROJET 2 -->
-                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-                    <div class="text-blue-400 text-3xl mb-4">
-                        <i class="fa-solid fa-network-wired"></i>
-                    </div>
-
-                    <h4 class="text-xl font-bold text-white mb-3">
-                        Classification Deep Learning de données capteurs
-                    </h4>
-
-                    <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                        Modèle de Deep Learning appliqué à des séries temporelles,
-                        avec entraînement, optimisation et évaluation des performances jusqu’à 97% de F1-score.
-                    </p>
-
-                    <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
-                        TensorFlow • Keras • Deep Learning • Séries temporelles
-                    </p>
-
-                    <a href="#" class="text-blue-400 text-sm hover:underline">
-                        Voir le projet
-                    </a>
-                </div>
-
-                <!-- PROJET 3 -->
-                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-                    <div class="text-blue-400 text-3xl mb-4">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-
-                    <h4 class="text-xl font-bold text-white mb-3">
-                        Analyse de sentiments avec API REST
-                    </h4>
-
-                    <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                        Solution NLP pour analyser des données textuelles issues de bases NoSQL,
-                        avec API FastAPI et dashboard de visualisation.
-                    </p>
-
-                    <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
-                        NLP • FastAPI • NoSQL • Python • Angular
-                    </p>
-
-                    <a href="#" class="text-blue-400 text-sm hover:underline">
-                        Voir le projet
-                    </a>
-                </div>
-
-                <!-- PROJET 4 -->
-                <div class="p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-                    <div class="text-blue-400 text-3xl mb-4">
-                        <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
-                    </div>
-
-                    <h4 class="text-xl font-bold text-white mb-3">
-                        Glutify - Détecteur de gluten
-                    </h4>
-
-                    <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                        Application IA pour analyser des produits alimentaires, identifier les risques liés au gluten
-                        et proposer des alternatives plus sûres.
-                    </p>
-
-                    <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
-                        Streamlit • FastAPI • RAG • Groq • OpenFoodFacts
-                    </p>
-
-                    <a href="gluten-detector-app.html" target="_blank" rel="noopener noreferrer" class="text-blue-400 text-sm hover:underline">
-                        Voir le projet
-                    </a>
                 </div>
             </div>
         </div>
