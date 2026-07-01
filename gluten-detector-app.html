@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glutify - Détecteur de gluten | Projet Hafsa El Mekki</title>
+    <meta name="description" content="Présentation détaillée du projet Glutify, application IA pour détecter les risques liés au gluten dans les produits alimentaires.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #172033;
+            --muted: #586579;
+            --line: #d9e2ef;
+            --accent: #2563eb;
+            --mint: #059669;
+            --coral: #f97316;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 12% 8%, rgba(249, 115, 22, 0.13), transparent 28rem),
+                radial-gradient(circle at 88% 12%, rgba(37, 99, 235, 0.13), transparent 26rem),
+                linear-gradient(180deg, #fffaf3 0%, #f8fbff 46%, #fff7ed 100%);
+            color: var(--ink);
+        }
+
+        .project-hero {
+            min-height: 72vh;
+            display: grid;
+            place-items: center;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .project-hero::before,
+        .project-hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            z-index: -1;
+            animation: floatShape 8s ease-in-out infinite;
+        }
+
+        .project-hero::before {
+            width: 18rem;
+            height: 18rem;
+            left: 5%;
+            top: 16%;
+            background: rgba(5, 150, 105, 0.14);
+        }
+
+        .project-hero::after {
+            width: 20rem;
+            height: 20rem;
+            right: 4%;
+            bottom: 8%;
+            background: rgba(37, 99, 235, 0.13);
+            animation-delay: -3s;
+        }
+
+        .animated-title {
+            background: linear-gradient(110deg, #172033, #2563eb, #059669, #f97316, #172033);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGradient 7s ease-in-out infinite;
+        }
+
+        .animate-rise {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: riseIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.24s; }
+
+        @keyframes riseIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGradient {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(18px, -22px, 0) scale(1.06); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <a href="index.html#projects" class="text-2xl font-bold tracking-tighter">
+            HEM<span class="text-blue-600">.</span>
+        </a>
+
+        <a href="index.html#projects" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Retour aux projets
+        </a>
+    </nav>
+
+    <main>
+        <section class="project-hero relative px-6 py-20">
+            <div class="max-w-5xl mx-auto text-center">
+                <p class="animate-rise text-sm uppercase tracking-[0.22em] text-blue-600 font-bold mb-5">
+                    Projet IA santé & nutrition
+                </p>
+
+                <h1 class="animate-rise delay-1 animated-title text-5xl md:text-7xl font-extrabold mb-6">
+                    Glutify - Détecteur de gluten
+                </h1>
+
+                <p class="animate-rise delay-2 max-w-3xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed mb-10">
+                    Application Streamlit et API FastAPI pour aider les personnes concernées par la maladie cœliaque
+                    à analyser des produits alimentaires, comprendre les risques liés au gluten et trouver des alternatives.
+                </p>
+
+                <div class="animate-rise delay-2 flex justify-center gap-4 flex-wrap">
+                    <a href="#demo" class="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 transition shadow-lg shadow-blue-500/20">
+                        <i class="fa-solid fa-play mr-2"></i>Démo
+                    </a>
+
+                    <a href="https://github.com/hafsaelmekki/gluten-detector-app" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium border border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600 transition">
+                        <i class="fa-brands fa-github mr-2"></i>Lien GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <article class="lg:col-span-2 p-8 bg-white/85 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                    <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-600 pl-4">
+                        Ce qui a été réalisé
+                    </h2>
+
+                    <div class="space-y-5 text-slate-600 leading-relaxed">
+                        <p>
+                            Glutify centralise l’analyse d’un produit alimentaire dans une interface Streamlit :
+                            recherche par nom ou code-barres, récupération des données OpenFoodFacts, affichage de la photo,
+                            composition, informations nutritionnelles et verdict lisible.
+                        </p>
+
+                        <p>
+                            Le cœur IA combine un LLM Groq avec un moteur RAG. Les règles médicales liées au gluten sont
+                            indexées avec FAISS et des embeddings HuggingFace, puis injectées dans le prompt pour produire
+                            une décision plus contextualisée : <strong>Sans gluten</strong>, <strong>Risque</strong> ou <strong>Interdit</strong>.
+                        </p>
+
+                        <p>
+                            Le projet inclut aussi un backend FastAPI pour exposer les fonctionnalités en REST,
+                            un historique auditable des analyses, une recherche d’alternatives sans gluten,
+                            des modes recettes pour créer ou adapter des plats, ainsi qu’une gestion de profils et favoris.
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="p-8 bg-white/85 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                    <h2 class="text-2xl font-bold mb-6">Stack technique</h2>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">Python</span>
+                        <span class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">Streamlit</span>
+                        <span class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">FastAPI</span>
+                        <span class="px-3 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium">RAG</span>
+                        <span class="px-3 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium">FAISS</span>
+                        <span class="px-3 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium">Groq</span>
+                        <span class="px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm font-medium">OpenFoodFacts</span>
+                        <span class="px-3 py-2 bg-orange-50 text-orange-700 rounded-lg text-sm font-medium">Docker</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="px-6 py-16 bg-white/55">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-10 border-l-4 border-blue-600 pl-4">
+                    Fonctionnalités principales
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-barcode"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Scan & analyse produit</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Recherche par nom ou code-barres, récupération des ingrédients et génération d’un verdict explicite.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="font-bold text-lg mb-3">RAG médical</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Indexation des règles gluten avec FAISS et injection du contexte médical dans l’analyse LLM.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-shield-heart"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Verdict traçable</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Historique des analyses avec date, justification, image produit et badge de risque coloré.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-utensils"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Recettes sans gluten</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Création de nouvelles recettes et adaptation de recettes non compatibles vers des alternatives sûres.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-server"></i></div>
+                        <h3 class="font-bold text-lg mb-3">API FastAPI</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Endpoints REST pour les produits, analyses, recettes, historiques, favoris, utilisateurs et authentification.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/90 border border-slate-200 rounded-xl">
+                        <div class="text-blue-600 text-3xl mb-4"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Persistance</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Sauvegarde des profils, favoris, recettes et analyses avec une base SQLite ou PostgreSQL selon la configuration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="px-6 py-16">
+            <div class="max-w-4xl mx-auto p-8 bg-white/85 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-600 pl-4">
+                    Démo
+                </h2>
+
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    Le dépôt ne fournit pas encore d’URL de démo publique. La démo peut être lancée en local avec
+                    le backend FastAPI et l’interface Streamlit.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                        <p class="font-bold text-slate-800 mb-2">Backend</p>
+                        <code class="text-slate-600">python -m uvicorn api:app --reload --port 8000</code>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                        <p class="font-bold text-slate-800 mb-2">Interface</p>
+                        <code class="text-slate-600">streamlit run app.py</code>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-4 flex-wrap">
+                    <a href="https://github.com/hafsaelmekki/gluten-detector-app" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 transition">
+                        <i class="fa-brands fa-github mr-2"></i>Voir le code
+                    </a>
+
+                    <a href="index.html#projects" class="px-6 py-3 rounded-lg font-medium border border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600 transition">
+                        Retour au portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-10 text-center border-t border-slate-200 text-slate-500 text-sm">
+        <p>© 2026 Hafsa El Mekki • Projet Glutify</p>
+    </footer>
+</body>
+</html>
