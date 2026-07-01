@@ -8,9 +8,170 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #172033;
+            --muted: #586579;
+            --line: #d9e2ef;
+            --accent: #2563eb;
+            --mint: #059669;
+            --coral: #f97316;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 12% 8%, rgba(249, 115, 22, 0.13), transparent 28rem),
+                radial-gradient(circle at 88% 12%, rgba(37, 99, 235, 0.13), transparent 26rem),
+                linear-gradient(180deg, #fffaf3 0%, #f8fbff 46%, #fff7ed 100%) !important;
+            color: var(--ink) !important;
+        }
+
+        .bg-slate-900,
+        .bg-slate-800,
+        .bg-slate-800\/50,
+        .bg-blue-900\/10 {
+            background-color: rgba(255, 255, 255, 0.84) !important;
+        }
+
+        .border-slate-700,
+        .border-slate-600,
+        .border-slate-800,
+        .border-blue-500\/20 {
+            border-color: var(--line) !important;
+        }
+
+        .text-slate-100,
+        .text-slate-200,
+        .text-slate-300,
+        .text-white {
+            color: var(--ink) !important;
+        }
+
+        .text-slate-400,
+        .text-slate-500 {
+            color: var(--muted) !important;
+        }
+
+        .text-blue-300,
+        .text-blue-400,
+        .text-blue-500,
+        .hover\:text-blue-400:hover {
+            color: var(--accent) !important;
+        }
+
+        .bg-blue-500 {
+            background: linear-gradient(135deg, var(--accent), var(--mint)) !important;
+            color: #ffffff !important;
+            box-shadow: 0 16px 35px rgba(37, 99, 235, 0.22);
+        }
+
+        .bg-blue-500 .fa-solid,
+        .bg-blue-500 .fa-brands {
+            color: #ffffff !important;
+        }
+
+        .hover\:bg-blue-600:hover {
+            background: linear-gradient(135deg, #1d4ed8, #047857) !important;
+        }
+
+        .hover\:border-blue-400:hover,
+        .hover\:border-blue-500\/50:hover {
+            border-color: var(--accent) !important;
+        }
+
+        section {
+            position: relative;
+        }
+
+        .intro-animated {
+            min-height: calc(100vh - 96px);
+            display: grid;
+            place-items: center;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .intro-animated::before,
+        .intro-animated::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(2px);
+            opacity: 0.75;
+            z-index: -1;
+            animation: floatShape 8s ease-in-out infinite;
+        }
+
+        .intro-animated::before {
+            width: 18rem;
+            height: 18rem;
+            left: 4%;
+            top: 12%;
+            background: rgba(249, 115, 22, 0.18);
+        }
+
+        .intro-animated::after {
+            width: 22rem;
+            height: 22rem;
+            right: 3%;
+            bottom: 8%;
+            background: rgba(37, 99, 235, 0.14);
+            animation-delay: -3s;
+        }
+
+        .animated-title {
+            background: linear-gradient(110deg, #172033, #2563eb, #059669, #f97316, #172033);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            animation: titleGradient 7s ease-in-out infinite;
+        }
+
+        .animate-rise {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: riseIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.24s; }
+        .delay-3 { animation-delay: 0.36s; }
+
+        @keyframes riseIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGradient {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(18px, -22px, 0) scale(1.06); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-slate-900 text-slate-100 font-sans">
+<body class="bg-amber-50 text-slate-800 font-sans">
 
     <!-- NAVBAR -->
     <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
@@ -29,16 +190,17 @@
     </nav>
 
     <!-- HERO / PROFIL -->
-    <section id="profile" class="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-white to-slate-500 bg-clip-text text-transparent">
+    <section id="profile" class="intro-animated py-20 px-6 max-w-6xl mx-auto text-center">
+        <div>
+        <h2 class="animate-rise animated-title text-5xl md:text-7xl font-extrabold mb-6">
             Hafsa El Mekki
         </h2>
 
-        <p class="text-xl md:text-2xl text-blue-400 mb-8 font-light">
+        <p class="animate-rise delay-1 text-xl md:text-2xl text-blue-400 mb-8 font-light">
             Data Scientist | Machine Learning Engineer | IA Générative
         </p>
 
-        <p class="max-w-3xl mx-auto text-slate-400 leading-relaxed">
+        <p class="animate-rise delay-2 max-w-3xl mx-auto text-slate-400 leading-relaxed">
             Data Scientist avec plus de 2 ans d’expérience dans la conception, l’optimisation
             et l’industrialisation de modèles d’intelligence artificielle appliqués aux séries temporelles,
             à la santé, au NLP et à l’analyse de données.
@@ -51,7 +213,7 @@
             </span>
         </p>
 
-        <div class="mt-10 flex justify-center gap-4 flex-wrap">
+        <div class="animate-rise delay-3 mt-10 flex justify-center gap-4 flex-wrap">
             <a href="documents/cv_HafsaElMekki_DataScientist_FR.pdf" download class="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition">
                 <i class="fa-solid fa-file-arrow-down mr-2"></i>Télécharger mon CV
             </a>
@@ -67,6 +229,7 @@
             <a href="https://github.com/ton-github" target="_blank" class="px-6 py-3 border border-slate-600 text-slate-200 rounded-lg font-medium hover:border-blue-400 hover:text-blue-400 transition">
                 <i class="fa-brands fa-github mr-2"></i>GitHub
             </a>
+        </div>
         </div>
     </section>
 
