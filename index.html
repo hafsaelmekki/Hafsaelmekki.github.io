@@ -83,6 +83,11 @@
             border-color: var(--accent) !important;
         }
 
+        .project-overlay,
+        .project-overlay * {
+            color: #ffffff !important;
+        }
+
         section {
             position: relative;
         }
@@ -501,30 +506,32 @@
             </h3>
 
             <div class="max-w-4xl mx-auto">
-                <div class="overflow-hidden bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
-                    <img src="documents/projets/glutenDetector/accueil.PNG" alt="Interface du tableau de bord Glutify" class="w-full h-64 md:h-80 object-cover object-top">
+                <div class="group relative overflow-hidden bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-500/50 transition">
+                    <img src="documents/projets/glutenDetector/accueil.PNG" alt="Interface du tableau de bord Glutify" class="w-full h-80 md:h-[28rem] object-cover object-top transition duration-500 group-hover:scale-105">
 
-                    <div class="p-6">
-                        <div class="text-blue-400 text-3xl mb-4">
-                            <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                    <div class="project-overlay absolute inset-0 flex items-end bg-gradient-to-t from-slate-950/95 via-slate-900/65 to-transparent p-6 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                        <div>
+                            <div class="text-3xl mb-4">
+                                <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                            </div>
+
+                            <h4 class="text-xl font-bold mb-3">
+                                Glutify - Détecteur de gluten
+                            </h4>
+
+                            <p class="text-sm mb-4 leading-relaxed">
+                                Application IA pour analyser des produits alimentaires, identifier les risques liés au gluten
+                                et proposer des alternatives plus sûres.
+                            </p>
+
+                            <p class="text-xs uppercase tracking-widest mb-4">
+                                Streamlit • FastAPI • RAG • Groq • OpenFoodFacts
+                            </p>
+
+                            <a href="gluten-detector-app.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-medium hover:underline">
+                                Voir le projet <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                            </a>
                         </div>
-
-                        <h4 class="text-xl font-bold text-white mb-3">
-                            Glutify - Détecteur de gluten
-                        </h4>
-
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Application IA pour analyser des produits alimentaires, identifier les risques liés au gluten
-                            et proposer des alternatives plus sûres.
-                        </p>
-
-                        <p class="text-xs text-blue-300 uppercase tracking-widest mb-4">
-                            Streamlit • FastAPI • RAG • Groq • OpenFoodFacts
-                        </p>
-
-                        <a href="gluten-detector-app.html" target="_blank" rel="noopener noreferrer" class="text-blue-400 text-sm hover:underline">
-                            Voir le projet
-                        </a>
                     </div>
                 </div>
             </div>
