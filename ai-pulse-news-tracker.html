@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pulse - News Monitoring Dashboard | Projet Hafsa El Mekki</title>
+    <meta name="description" content="Pr&eacute;sentation du projet AI Pulse News Tracker, tableau de bord de veille IA avec Azure AI Language, Cosmos DB, Streamlit et assistant RAG.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #172033;
+            --muted: #586579;
+            --line: #d9e2ef;
+            --accent: #0891b2;
+            --blue: #2563eb;
+            --amber: #f59e0b;
+            --rose: #db2777;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 10%, rgba(8, 145, 178, 0.14), transparent 28rem),
+                radial-gradient(circle at 90% 8%, rgba(245, 158, 11, 0.12), transparent 24rem),
+                linear-gradient(180deg, #f8fafc 0%, #ffffff 46%, #eef7fb 100%);
+            color: var(--ink);
+        }
+
+        .project-hero {
+            min-height: 72vh;
+            display: grid;
+            place-items: center;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .project-hero::before,
+        .project-hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            z-index: -1;
+            animation: floatShape 8s ease-in-out infinite;
+        }
+
+        .project-hero::before {
+            width: 18rem;
+            height: 18rem;
+            left: 4%;
+            top: 14%;
+            background: rgba(8, 145, 178, 0.14);
+        }
+
+        .project-hero::after {
+            width: 20rem;
+            height: 20rem;
+            right: 3%;
+            bottom: 8%;
+            background: rgba(219, 39, 119, 0.10);
+            animation-delay: -3s;
+        }
+
+        .animated-title {
+            background: linear-gradient(110deg, #172033, #0891b2, #2563eb, #f59e0b, #172033);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGradient 7s ease-in-out infinite;
+        }
+
+        .animate-rise {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: riseIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.12s; }
+        .delay-2 { animation-delay: 0.24s; }
+
+        @keyframes riseIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGradient {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(18px, -22px, 0) scale(1.06); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <a href="index.html#projects" class="text-2xl font-bold tracking-tighter">
+            HEM<span class="text-cyan-600">.</span>
+        </a>
+
+        <a href="index.html#projects" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Retour aux projets
+        </a>
+    </nav>
+
+    <main>
+        <section class="project-hero relative px-6 py-20">
+            <div class="max-w-5xl mx-auto text-center">
+                <p class="animate-rise text-sm uppercase tracking-[0.22em] text-cyan-700 font-bold mb-5">
+                    Projet IA veille & analyse m&eacute;dia
+                </p>
+
+                <h1 class="animate-rise delay-1 animated-title text-5xl md:text-7xl font-extrabold mb-6">
+                    AI Pulse - News Monitoring Dashboard
+                </h1>
+
+                <p class="animate-rise delay-2 max-w-3xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed mb-10">
+                    Tableau de bord Streamlit pour suivre l'actualit&eacute; IA francophone, scorer le sentiment avec Azure AI Language,
+                    stocker les articles dans Cosmos DB et interroger les tendances via un assistant RAG.
+                </p>
+
+                <div class="animate-rise delay-2 flex justify-center gap-4 flex-wrap">
+                    <a href="https://github.com/hafsaelmekki/AI-Pulse-News-Tracker" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 transition shadow-lg shadow-cyan-500/20">
+                        <i class="fa-brands fa-github mr-2"></i>Lien GitHub
+                    </a>
+
+                    <a href="#media" class="px-6 py-3 rounded-lg font-medium border border-slate-300 text-slate-700 hover:border-cyan-600 hover:text-cyan-700 transition">
+                        <i class="fa-solid fa-images mr-2"></i>Voir les captures
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <article class="lg:col-span-2 p-8 bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                    <h2 class="text-3xl font-bold mb-6 border-l-4 border-cyan-600 pl-4">
+                        Ce qui a &eacute;t&eacute; r&eacute;alis&eacute;
+                    </h2>
+
+                    <div class="space-y-5 text-slate-600 leading-relaxed">
+                        <p>
+                            AI Pulse agr&egrave;ge des articles d'actualit&eacute; autour de l'intelligence artificielle, puis les transforme
+                            en indicateurs exploitables : volume d'articles, sentiment moyen, sources les plus actives,
+                            sujets dominants et importance des entreprises mentionn&eacute;es.
+                        </p>
+
+                        <p>
+                            Azure AI Language est utilis&eacute; pour extraire le sentiment et structurer l'analyse linguistique.
+                            Les donn&eacute;es sont persist&eacute;es dans Azure Cosmos DB afin de conserver un historique consultable,
+                            filtrable et r&eacute;utilisable dans les visualisations.
+                        </p>
+
+                        <p>
+                            Le tableau de bord Streamlit expose les filtres, graphiques et tables d'exploration, tandis que
+                            l'assistant RAG permet de questionner les tendances, les sources, les entreprises, les signaux faibles
+                            et les articles importants directement depuis l'application.
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="p-8 bg-white/90 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                    <h2 class="text-2xl font-bold mb-6">Stack technique</h2>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm font-medium">Python</span>
+                        <span class="px-3 py-2 bg-cyan-50 text-cyan-700 rounded-lg text-sm font-medium">Streamlit</span>
+                        <span class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">Azure AI Language</span>
+                        <span class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">Azure Cosmos DB</span>
+                        <span class="px-3 py-2 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium">RAG</span>
+                        <span class="px-3 py-2 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium">NLP</span>
+                        <span class="px-3 py-2 bg-rose-50 text-rose-700 rounded-lg text-sm font-medium">Dashboards</span>
+                        <span class="px-3 py-2 bg-rose-50 text-rose-700 rounded-lg text-sm font-medium">News monitoring</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="px-6 py-16 bg-white/60">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-10 border-l-4 border-cyan-600 pl-4">
+                    Fonctionnalit&eacute;s principales
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-filter"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Filtres de veille</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Filtrage par p&eacute;riode, sentiment, source et score d'importance pour explorer rapidement les articles.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="font-bold text-lg mb-3">KPIs & tendances</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Cartes KPI, courbes de sentiment et distributions pour suivre les variations de l'actualit&eacute; IA.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-language"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Analyse Azure NLP</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Scoring de sentiment et structuration des informations textuelles via Azure AI Language.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Stockage Cosmos DB</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Persistance des articles, m&eacute;tadonn&eacute;es, scores et historiques pour alimenter les vues analytiques.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-table-list"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Article explorer</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Table consultable pour comparer titres, dates, sources, topics et sentiments article par article.</p>
+                    </div>
+
+                    <div class="p-6 bg-white/95 border border-slate-200 rounded-xl">
+                        <div class="text-cyan-600 text-3xl mb-4"><i class="fa-solid fa-robot"></i></div>
+                        <h3 class="font-bold text-lg mb-3">Assistant RAG</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Questions en langage naturel sur les tendances, les entreprises, les sources et les signaux faibles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="media" class="px-6 py-16">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 border-l-4 border-cyan-600 pl-4">
+                    M&eacute;dia
+                </h2>
+
+                <p class="text-slate-600 leading-relaxed mb-10 max-w-3xl">
+                    Captures du tableau de bord AI Pulse : KPIs, sentiment, importance des entreprises,
+                    sources, explorateur d'articles et assistant RAG.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/1.PNG" data-alt="Filtres et KPIs du tableau de bord AI Pulse">
+                            <img src="documents/projets/aipulse/1.PNG" alt="Filtres et KPIs du tableau de bord AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Dashboard KPIs</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Vue synth&eacute;tique des volumes, sentiments, sources actives et topics dominants.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/2.PNG" data-alt="Analyse de sentiment AI Pulse">
+                            <img src="documents/projets/aipulse/2.PNG" alt="Analyse de sentiment AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Sentiment analysis</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Distribution et tendance temporelle des sentiments positifs, neutres, n&eacute;gatifs et mixtes.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/3.PNG" data-alt="Importance des entreprises dans AI Pulse">
+                            <img src="documents/projets/aipulse/3.PNG" alt="Importance des entreprises dans AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Company importance</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Suivi des scores d'importance et comparaison des entreprises mentionn&eacute;es.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/4.PNG" data-alt="Sources et entreprises AI Pulse">
+                            <img src="documents/projets/aipulse/4.PNG" alt="Sources et entreprises AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Sources & compagnies</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Graphiques de r&eacute;partition des sources les plus actives et des entreprises les plus cit&eacute;es.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/5.PNG" data-alt="Article explorer AI Pulse">
+                            <img src="documents/projets/aipulse/5.PNG" alt="Article explorer AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Article explorer</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Exploration tabulaire des articles avec date, titre, source, topic et sentiment.</p>
+                        </div>
+                    </article>
+
+                    <article class="overflow-hidden bg-white/95 border border-slate-200 rounded-xl shadow-xl shadow-slate-200/50">
+                        <button type="button" class="media-trigger block w-full cursor-zoom-in" data-src="documents/projets/aipulse/6.PNG" data-alt="Assistant RAG AI Pulse">
+                            <img src="documents/projets/aipulse/6.PNG" alt="Assistant RAG AI Pulse" class="w-full h-40 object-cover object-top transition duration-300 hover:scale-105">
+                        </button>
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2">Assistant RAG</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Interface conversationnelle pour interroger les tendances, sources et signaux faibles.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="mt-10 flex gap-4 flex-wrap">
+                    <a href="https://github.com/hafsaelmekki/AI-Pulse-News-Tracker" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 transition">
+                        <i class="fa-brands fa-github mr-2"></i>Lien GitHub
+                    </a>
+
+                    <a href="index.html#projects" class="px-6 py-3 rounded-lg font-medium border border-slate-300 text-slate-700 hover:border-cyan-600 hover:text-cyan-700 transition">
+                        Retour au portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-10 text-center border-t border-slate-200 text-slate-500 text-sm">
+        <p>&copy; 2026 Hafsa El Mekki &bull; Projet AI Pulse</p>
+    </footer>
+
+    <div id="mediaModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 p-4">
+        <button type="button" id="closeMediaModal" class="absolute right-5 top-5 rounded-full bg-white/95 px-4 py-2 text-slate-800 shadow-lg hover:bg-white">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="mediaModalImage" src="" alt="" class="max-h-[88vh] max-w-[95vw] rounded-xl bg-white object-contain shadow-2xl">
+    </div>
+
+    <script>
+        const mediaModal = document.getElementById("mediaModal");
+        const mediaModalImage = document.getElementById("mediaModalImage");
+        const closeMediaModal = document.getElementById("closeMediaModal");
+
+        document.querySelectorAll(".media-trigger").forEach((button) => {
+            button.addEventListener("click", () => {
+                mediaModalImage.src = button.dataset.src;
+                mediaModalImage.alt = button.dataset.alt;
+                mediaModal.classList.remove("hidden");
+                mediaModal.classList.add("flex");
+            });
+        });
+
+        function hideMediaModal() {
+            mediaModal.classList.add("hidden");
+            mediaModal.classList.remove("flex");
+            mediaModalImage.src = "";
+        }
+
+        closeMediaModal.addEventListener("click", hideMediaModal);
+        mediaModal.addEventListener("click", (event) => {
+            if (event.target === mediaModal) {
+                hideMediaModal();
+            }
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !mediaModal.classList.contains("hidden")) {
+                hideMediaModal();
+            }
+        });
+    </script>
+</body>
+</html>
